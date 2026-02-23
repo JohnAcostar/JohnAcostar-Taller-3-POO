@@ -1,4 +1,6 @@
 package uniandes.dpoo.aerolinea.persistencia;
+import uniandes.dpoo.aerolinea.persistencia.PersistenciaAerolineaJson;
+import uniandes.dpoo.aerolinea.persistencia.PersistenciaAerolineaPlaintext;
 
 /**
  * Esta clase cumple el rol de una fábrica de componentes que se encargan de manejar la persistencia de una aerolínea y de sus tiquetes
@@ -24,11 +26,22 @@ public class CentralPersistencia
      * @return El objeto que debería usarse para cargar y salvar la información
      * @throws TipoInvalidoException Se lanza esta excepción si se utiliza un tipo de archivo que no es válido
      */
-    public static IPersistenciaAerolinea getPersistenciaAerolinea( String tipoArchivo ) throws TipoInvalidoException
+    public static IPersistenciaAerolinea getPersistenciaAerolinea(String tipoArchivo)
+            throws TipoInvalidoException
     {
-        // TODO implementar
+        if (JSON.equals(tipoArchivo))
+        {
+            return new PersistenciaAerolineaJson();
+        }
+        else if (PLAIN.equals(tipoArchivo))
+        {
+            return new PersistenciaAerolineaPlaintext();
+        }
+        else
+        {
+            throw new TipoInvalidoException(tipoArchivo);
+        }
     }
-
     /**
      * Este método retorna una nueva instancia de una clase capaz de cargar y salvar los datos de los tiquetes de una aerolínea
      * 
