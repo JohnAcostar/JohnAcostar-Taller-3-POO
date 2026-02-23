@@ -3,50 +3,53 @@ package uniandes.dpoo.aerolinea.tiquetes;
 import uniandes.dpoo.aerolinea.modelo.Vuelo;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 
-public class Tiquete 
+public class Tiquete
 {
-    private String codigo;
-    private Vuelo vuelo;
     private Cliente cliente;
+    private Vuelo vuelo;
+    private String codigo;
     private int tarifa;
     private boolean usado;
 
-    public Tiquete(String codigo, Vuelo vuelo, Cliente cliente, int tarifa) 
+    public Tiquete(String codigo, Vuelo vuelo, Cliente clienteComprador, int tarifa)
     {
         this.codigo = codigo;
         this.vuelo = vuelo;
-        this.cliente = cliente;
+        this.cliente = clienteComprador;
         this.tarifa = tarifa;
         this.usado = false;
+
+        // Se agrega automáticamente al cliente
+        clienteComprador.agregarTiquete(this);
     }
 
-    public String getCodigo() 
-    {
-        return codigo;
-    }
-
-    public Vuelo getVuelo() 
-    {
-        return vuelo;
-    }
-
-    public Cliente getCliente() 
+    public Cliente getCliente()
     {
         return cliente;
     }
 
-    public int getTarifa() 
+    public Vuelo getVuelo()
+    {
+        return vuelo;
+    }
+
+    public String getCodigo()
+    {
+        return codigo;
+    }
+
+    public int getTarifa()
     {
         return tarifa;
     }
 
-    public boolean esUsado() 
+    public void marcarComoUsado()
     {
-        return usado;
+        usado = true;
     }
 
-    public void marcarComoUsado() 
+    public boolean esUsado()
     {
-        this.usado = true;
+        return usado;
     }
 }

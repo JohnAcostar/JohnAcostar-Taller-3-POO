@@ -6,14 +6,20 @@ public class ClienteNatural extends Cliente
 
     private String nombre;
 
-    public ClienteNatural(String nombre) 
+    public ClienteNatural(String nombre)
     {
-        super(nombre);
+        super(); // llama al constructor vacío de Cliente
         this.nombre = nombre;
     }
 
     @Override
-    public String getTipoCliente() 
+    public String getIdentificador()
+    {
+        return nombre;
+    }
+
+    @Override
+    public String getTipoCliente()
     {
         return NATURAL;
     }
